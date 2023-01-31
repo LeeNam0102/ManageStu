@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="StuManagementModelStoreContainer" CdmEntityContainer="StuManagementEntities">
+    <EntitySetMapping Name="Courses">
+      <EntityTypeMapping TypeName="StuManagementModel.Course">
+        <MappingFragment StoreEntitySet="Course">
+          <ScalarProperty Name="couId" ColumnName="couId" />
+          <ScalarProperty Name="couName" ColumnName="couName" />
+          <ScalarProperty Name="couSemester" ColumnName="couSemester" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Exams">
+      <EntityTypeMapping TypeName="StuManagementModel.Exam">
+        <MappingFragment StoreEntitySet="Exam">
+          <ScalarProperty Name="examId" ColumnName="examId" />
+          <ScalarProperty Name="examName" ColumnName="examName" />
+          <ScalarProperty Name="examMark" ColumnName="examMark" />
+          <ScalarProperty Name="examDate" ColumnName="examDate" />
+          <ScalarProperty Name="stuId" ColumnName="stuId" />
+          <ScalarProperty Name="couId" ColumnName="couId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Students">
+      <EntityTypeMapping TypeName="StuManagementModel.Student">
+        <MappingFragment StoreEntitySet="Student">
+          <ScalarProperty Name="stuId" ColumnName="stuId" />
+          <ScalarProperty Name="stuPass" ColumnName="stuPass" />
+          <ScalarProperty Name="stuName" ColumnName="stuName" />
+          <ScalarProperty Name="stuAddress" ColumnName="stuAddress" />
+          <ScalarProperty Name="stuPhone" ColumnName="stuPhone" />
+          <ScalarProperty Name="stuEmail" ColumnName="stuEmail" />
+          <ScalarProperty Name="depId" ColumnName="depId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
