@@ -42,5 +42,13 @@ namespace ManageStu
             examFrom.ShowDialog();
             this.Close();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            DepartmentForm depForm = new DepartmentForm();
+            depForm.ShowDialog();
+            this.Close();
+        }
     }
 }

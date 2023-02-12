@@ -54,6 +54,7 @@
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.button3 = new System.Windows.Forms.Button();
             this.btn_save = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).BeginInit();
             this.bindingNavigator1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -211,7 +212,7 @@
             this.bindingNavigator1.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.bindingNavigator1.Name = "bindingNavigator1";
             this.bindingNavigator1.PositionItem = this.bindingNavigatorPositionItem;
-            this.bindingNavigator1.Size = new System.Drawing.Size(227, 31);
+            this.bindingNavigator1.Size = new System.Drawing.Size(227, 27);
             this.bindingNavigator1.TabIndex = 54;
             this.bindingNavigator1.Text = "bindingNavigator1";
             // 
@@ -228,7 +229,7 @@
             this.bindingNavigatorMoveFirstItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveFirstItem.Image")));
             this.bindingNavigatorMoveFirstItem.Name = "bindingNavigatorMoveFirstItem";
             this.bindingNavigatorMoveFirstItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveFirstItem.Size = new System.Drawing.Size(29, 28);
+            this.bindingNavigatorMoveFirstItem.Size = new System.Drawing.Size(29, 24);
             this.bindingNavigatorMoveFirstItem.Text = "Move first";
             // 
             // bindingNavigatorMovePreviousItem
@@ -331,12 +332,23 @@
             this.btn_save.UseWaitCursor = true;
             this.btn_save.Click += new System.EventHandler(this.save_Click);
             // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(859, 18);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(94, 28);
+            this.button2.TabIndex = 73;
+            this.button2.Text = "Search";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // CourseForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.MistyRose;
             this.ClientSize = new System.Drawing.Size(1440, 450);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label6);
@@ -353,7 +365,7 @@
             this.Controls.Add(this.bindingNavigator1);
             this.Controls.Add(this.dataGridView1);
             this.Name = "CourseForm";
-            this.Text = "CourseForm";
+            this.Text = "Search";
             this.Load += new System.EventHandler(this.CourseForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).EndInit();
             this.bindingNavigator1.ResumeLayout(false);
@@ -390,5 +402,6 @@
         private System.Windows.Forms.BindingSource bindingSource1;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button btn_save;
+        private System.Windows.Forms.Button button2;
     }
 }

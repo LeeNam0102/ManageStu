@@ -74,6 +74,8 @@
             this.stuManagementDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.stuManagementDataSetBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.stuManagementDataSetBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
+            this.stuManagementDataSetBindingSource3 = new System.Windows.Forms.BindingSource(this.components);
+            this.buttonSearch = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).BeginInit();
             this.bindingNavigator1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -88,6 +90,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.stuManagementDataSetBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.stuManagementDataSetBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.stuManagementDataSetBindingSource2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.stuManagementDataSetBindingSource3)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
@@ -493,12 +496,28 @@
             this.stuManagementDataSetBindingSource2.DataSource = this.stuManagementDataSet;
             this.stuManagementDataSetBindingSource2.Position = 0;
             // 
+            // stuManagementDataSetBindingSource3
+            // 
+            this.stuManagementDataSetBindingSource3.DataSource = this.stuManagementDataSet;
+            this.stuManagementDataSetBindingSource3.Position = 0;
+            // 
+            // buttonSearch
+            // 
+            this.buttonSearch.Location = new System.Drawing.Point(859, 22);
+            this.buttonSearch.Name = "buttonSearch";
+            this.buttonSearch.Size = new System.Drawing.Size(90, 24);
+            this.buttonSearch.TabIndex = 56;
+            this.buttonSearch.Text = "Search";
+            this.buttonSearch.UseVisualStyleBackColor = true;
+            this.buttonSearch.Click += new System.EventHandler(this.buttonSearch_Click);
+            // 
             // ExamForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.MistyRose;
             this.ClientSize = new System.Drawing.Size(1440, 517);
+            this.Controls.Add(this.buttonSearch);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.comboBoxCouId);
@@ -540,6 +559,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.stuManagementDataSetBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.stuManagementDataSetBindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.stuManagementDataSetBindingSource2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.stuManagementDataSetBindingSource3)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -591,5 +611,7 @@
         private System.Windows.Forms.ToolStripButton bindingNavigatorMoveNextItem;
         private System.Windows.Forms.BindingSource stuManagementDataSetBindingSource1;
         private System.Windows.Forms.BindingSource stuManagementDataSetBindingSource2;
+        private System.Windows.Forms.BindingSource stuManagementDataSetBindingSource3;
+        private System.Windows.Forms.Button buttonSearch;
     }
 }

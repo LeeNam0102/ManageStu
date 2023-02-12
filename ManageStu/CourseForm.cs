@@ -36,10 +36,11 @@ namespace ManageStu
         }
         private void LoadData()
         {
-            using (StuManagementEntities db = new StuManagementEntities())
+            using (StuManagementEntities1 db = new StuManagementEntities1())
             {
-               
-                dataGridView1.DataSource = db.Courses.ToList();
+                bindingSource1.DataSource = db.Courses.ToList();
+                dataGridView1.DataSource = bindingSource1;
+                bindingNavigator1.BindingSource = bindingSource1;
 
             }
 
@@ -49,17 +50,12 @@ namespace ManageStu
             LoadData();
         }
 
-        private void button_Update_Click_1(object sender, EventArgs e)
-        {
-
-           
-        }
 
         private void button_Del_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("Are you sure??", "EF CRUD OPERATION", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                using (StuManagementEntities db = new StuManagementEntities())
+                using (StuManagementEntities1 db = new StuManagementEntities1())
                 {
                     var entry = db.Entry(model);
                     if (entry.State == EntityState.Detached)
@@ -68,7 +64,7 @@ namespace ManageStu
                     }
                     db.Courses.Remove(model);
                     db.SaveChanges();
-                    PopulateDataGriview();
+                    LoadData();
                     MessageBox.Show("Delete sucessfully !");
                 }
             }
@@ -79,27 +75,28 @@ namespace ManageStu
         {
             TxtCourseName.Text = "";
             TxtCourseSemester.Text = "";
+            LoadData();
         }
         private void button3_Click(object sender, EventArgs e)
         {
             Reset();
 
         }
-        private void PopulateDataGriview()
-        {
-            dataGridView1.AutoGenerateColumns = false;
-            using (StuManagementEntities db = new StuManagementEntities())
-            {
-                dataGridView1.DataSource = db.Courses.ToList<Course>();
-            }
-        }
+        //private void PopulateDataGriview()
+        //{
+        //    dataGridView1.AutoGenerateColumns = false;
+        //    using (StuManagementEntities1 db = new StuManagementEntities1())
+        //    {
+        //        dataGridView1.DataSource = db.Courses.ToList<Course>();
+        //    }
+        //}
 
         private void save_Click(object sender, EventArgs e)
         {
             model.couName = TxtCourseName.Text;
             model.couSemester = Convert.ToInt32(TxtCourseSemester.Text);
             
-            using (StuManagementEntities db = new StuManagementEntities())
+            using (StuManagementEntities1 db = new StuManagementEntities1())
             {
                 if (model.couId == 0)
                 {
@@ -109,7 +106,7 @@ namespace ManageStu
                 db.SaveChanges();
             }
             MessageBox.Show("Submitted Succesfully !");
-            PopulateDataGriview();
+            LoadData();
         }
 
         private void dataGridView1_DoubleClick(object sender, EventArgs e)
@@ -117,7 +114,7 @@ namespace ManageStu
             if (dataGridView1.CurrentRow.Index != -1)
             {
                 model.couId = Convert.ToInt32(dataGridView1.CurrentRow.Cells["couId"].Value);
-                using (StuManagementEntities db = new StuManagementEntities())
+                using (StuManagementEntities1 db = new StuManagementEntities1())
                 {
                     model = db.Courses.Where(x => x.couId == model.couId).FirstOrDefault();
                     TxtId.Text = model.couId.ToString();
@@ -126,7 +123,17 @@ namespace ManageStu
                 }
                 btn_save.Text = "Update";
                 button_Del.Enabled = true;
-                PopulateDataGriview();
+                LoadData();
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            using (StuManagementEntities1 db = new StuManagementEntities1())
+            {
+                string kw = textBoxSearch.Text.Trim();
+                dataGridView1.DataSource = db.Courses
+                    .Where(x => x.couName.Contains(kw)).ToList();
             }
         }
     }

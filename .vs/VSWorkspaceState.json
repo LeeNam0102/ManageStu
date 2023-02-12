@@ -2,8 +2,10 @@
   "ExpandedNodes": [
     "",
     "\\ManageStu",
-    "\\ManageStu\\Database"
+    "\\ManageStu\\Database",
+    "\\ManageStu\\Images",
+    "\\ManageStu\\obj"
   ],
-  "SelectedNode": "\\ManageStu\\StuForm.cs",
+  "SelectedNode": "\\ManageStu\\CourseForm.cs",
   "PreviewInSolutionExplorer": false
 }

@@ -17,3 +17,4 @@ C:\Users\ADMIN\source\repos\ManageStu\ManageStu\bin\Debug\EntityFramework.SqlSer
 C:\Users\ADMIN\source\repos\ManageStu\ManageStu\bin\Debug\EntityFramework.xml
 C:\Users\ADMIN\source\repos\ManageStu\ManageStu\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\ADMIN\source\repos\ManageStu\ManageStu\obj\Debug\ManageStu.csproj.CopyComplete
+C:\Users\ADMIN\source\repos\ManageStu\ManageStu\obj\Debug\ManageStu.DepartmentForm.resources

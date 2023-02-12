@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="StuManagementModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="StuManagementModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Course">
           <Key>
             <PropertyRef Name="couId" />
@@ -12,6 +12,13 @@
           <Property Name="couId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="couName" Type="nvarchar" MaxLength="50" />
           <Property Name="couSemester" Type="int" />
+        </EntityType>
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="depId" />
+          </Key>
+          <Property Name="depId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="depName" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Exam">
           <Key>
@@ -32,17 +39,17 @@
           <Property Name="stuPass" Type="bit" />
           <Property Name="stuName" Type="nvarchar" MaxLength="50" />
           <Property Name="stuAddress" Type="nvarchar" MaxLength="50" />
-          <Property Name="stuPhone" Type="nvarchar" MaxLength="50" />
+          <Property Name="stuPhone" Type="nvarchar" MaxLength="10" />
           <Property Name="stuEmail" Type="nvarchar" MaxLength="50" />
           <Property Name="depId" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityContainer Name="StuManagementModelStoreContainer">
           <EntitySet Name="Course" EntityType="Self.Course" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Department" EntityType="Self.Department" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Exam" EntityType="Self.Exam" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="StuManagementModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -73,21 +80,29 @@
           <Property Name="stuPass" Type="Boolean" />
           <Property Name="stuName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="stuAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="stuPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="stuPhone" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="stuEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="depId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityContainer Name="StuManagementEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="StuManagementEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Courses" EntityType="Self.Course" />
           <EntitySet Name="Exams" EntityType="Self.Exam" />
           <EntitySet Name="Students" EntityType="Self.Student" />
+          <EntitySet Name="Departments" EntityType="StuManagementModel.Department" />
         </EntityContainer>
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="depId" />
+          </Key>
+          <Property Name="depId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="depName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="StuManagementModelStoreContainer" CdmEntityContainer="StuManagementEntities">
+        <EntityContainerMapping StorageEntityContainer="StuManagementModelStoreContainer" CdmEntityContainer="StuManagementEntities1">
           <EntitySetMapping Name="Courses">
             <EntityTypeMapping TypeName="StuManagementModel.Course">
               <MappingFragment StoreEntitySet="Course">
@@ -122,6 +137,14 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Departments">
+            <EntityTypeMapping TypeName="StuManagementModel.Department">
+              <MappingFragment StoreEntitySet="Department">
+                <ScalarProperty Name="depName" ColumnName="depName" />
+                <ScalarProperty Name="depId" ColumnName="depId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -137,7 +160,7 @@
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="true" />
-        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="false" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>

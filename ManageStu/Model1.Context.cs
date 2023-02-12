@@ -13,10 +13,10 @@ namespace ManageStu
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class StuManagementEntities : DbContext
+    public partial class StuManagementEntities1 : DbContext
     {
-        public StuManagementEntities()
-            : base("name=StuManagementEntities")
+        public StuManagementEntities1()
+            : base("name=StuManagementEntities1")
         {
         }
     
@@ -28,5 +28,6 @@ namespace ManageStu
         public virtual DbSet<Course> Courses { get; set; }
         public virtual DbSet<Exam> Exams { get; set; }
         public virtual DbSet<Student> Students { get; set; }
+        public virtual DbSet<Department> Departments { get; set; }
     }
 }

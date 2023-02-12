@@ -28,7 +28,12 @@ namespace ManageStu
 
         private void Form_LoadData(object sender, EventArgs e)
         {
-            LoadData();
+            AllowDrop= true;
+            using (StuManagementEntities1 db = new StuManagementEntities1())
+            {
+                LoadData();
+
+            }
         }
         private void button1_Click(object sender, EventArgs e)
         {
@@ -40,13 +45,12 @@ namespace ManageStu
 
         private void LoadData()
         {
-            using (StuManagementEntities db = new StuManagementEntities())
+            using (StuManagementEntities1 db = new StuManagementEntities1())
             {
-
-                dataGridView1.DataSource = db.Students.ToList();
-
+                bindingSource1.DataSource = db.Students.ToList();
+                dataGridView1.DataSource = bindingSource1;
+                bindingNavigator1.BindingSource = bindingSource1;
             }
-
         }
 
 
@@ -58,6 +62,7 @@ namespace ManageStu
             btn_Save.Text = "Save";
             button_Del.Enabled = false;
             model.stuId = 0;
+            LoadData();
         }
         private void button2_Click(object sender, EventArgs e)
         {
@@ -69,7 +74,7 @@ namespace ManageStu
         {
             if (MessageBox.Show("Are you sure??", "EF CRUD OPERATION", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                using (StuManagementEntities db = new StuManagementEntities())
+                using (StuManagementEntities1 db = new StuManagementEntities1())
                 {
                     var entry = db.Entry(model);
                     if (entry.State == EntityState.Detached)
@@ -78,30 +83,32 @@ namespace ManageStu
                     }
                     db.Students.Remove(model);
                     db.SaveChanges();
-                    PopulateDataGriview();
+                    LoadData();
                     MessageBox.Show("Delete sucessfully !");
                 }
             }
         }
-        private void PopulateDataGriview()
-        {
-            dataGridView1.AutoGenerateColumns = false;
-            using (StuManagementEntities db = new StuManagementEntities())
-            {
-                dataGridView1.DataSource = db.Students.ToList<Student>();
-            }
-        }
+        //private void PopulateDataGriview()
+        //{
+
+        //    dataGridView1.AutoGenerateColumns = false;
+        //    using (StuManagementEntities1 db = new StuManagementEntities1())
+        //    {
+        //        dataGridView1.DataSource = db.Students.ToList<Student>();
+
+        //    }
+        //}
 
         private void btn_Save_Click(object sender, EventArgs e)
         {
 
             model.stuPass = Convert.ToBoolean(chkPass.Checked);
             model.stuName = TxtName.Text.Trim();
-            model.stuPhone = TxtPhone.Text;
+            model.stuPhone = TxtPhone.Text.Trim();
             model.stuAddress = TxtAddress.Text.Trim();
             model.stuEmail = TxtEmail.Text.Trim();
             model.depId = TxtDepId.Text.Trim();
-            using (StuManagementEntities db = new StuManagementEntities())
+            using (StuManagementEntities1 db = new StuManagementEntities1())
             {
                 if (model.stuId == 0)
                 {
@@ -111,7 +118,7 @@ namespace ManageStu
                 db.SaveChanges();
             }
             MessageBox.Show("Submitted Succesfully !");
-            PopulateDataGriview();
+            LoadData();
         }
 
         private void dataGridView1_DoubleClick_1(object sender, EventArgs e)
@@ -119,11 +126,11 @@ namespace ManageStu
             if (dataGridView1.CurrentRow.Index != -1)
             {
                 model.stuId = Convert.ToInt32(dataGridView1.CurrentRow.Cells["stuId"].Value);
-                using (StuManagementEntities db = new StuManagementEntities())
+                using (StuManagementEntities1 db = new StuManagementEntities1())
                 {
                     model = db.Students.Where(x => x.stuId == model.stuId).FirstOrDefault();
                     TxtId.Text = model.stuId.ToString();
-                    chkPass.Text = model.stuPass.ToString();
+                    chkPass.Checked = model.stuPass.Value;
                     chkPass.Text = "Pass or Fail";
                     TxtName.Text = model.stuName;
                     TxtPhone.Text = model.stuPhone.ToString();
@@ -133,14 +140,14 @@ namespace ManageStu
                 }
                 btn_Save.Text = "Update";
                 button_Del.Enabled = true;
-                PopulateDataGriview();
+                LoadData();
             }
         }
 
 
         private void button_Search_Click(object sender, EventArgs e)
         {
-            using (StuManagementEntities db = new StuManagementEntities())
+            using (StuManagementEntities1 db = new StuManagementEntities1())
             {
                 string kw = textBoxSearch.Text.Trim();
                 dataGridView1.DataSource = db.Students

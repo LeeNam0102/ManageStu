@@ -27,13 +27,21 @@
     <Property Name="stuPass" Type="Boolean" />
     <Property Name="stuName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="stuAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="stuPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="stuPhone" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
     <Property Name="stuEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="depId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
   </EntityType>
-  <EntityContainer Name="StuManagementEntities" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="StuManagementEntities1" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Courses" EntityType="Self.Course" />
     <EntitySet Name="Exams" EntityType="Self.Exam" />
     <EntitySet Name="Students" EntityType="Self.Student" />
+    <EntitySet Name="Departments" EntityType="StuManagementModel.Department" />
   </EntityContainer>
+  <EntityType Name="Department">
+    <Key>
+      <PropertyRef Name="depId" />
+    </Key>
+    <Property Name="depId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="depName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
 </Schema>

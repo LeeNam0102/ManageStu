@@ -8,6 +8,13 @@
     <Property Name="couName" Type="nvarchar" MaxLength="50" />
     <Property Name="couSemester" Type="int" />
   </EntityType>
+  <EntityType Name="Department">
+    <Key>
+      <PropertyRef Name="depId" />
+    </Key>
+    <Property Name="depId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="depName" Type="nvarchar" MaxLength="50" />
+  </EntityType>
   <EntityType Name="Exam">
     <Key>
       <PropertyRef Name="examId" />
@@ -27,12 +34,13 @@
     <Property Name="stuPass" Type="bit" />
     <Property Name="stuName" Type="nvarchar" MaxLength="50" />
     <Property Name="stuAddress" Type="nvarchar" MaxLength="50" />
-    <Property Name="stuPhone" Type="nvarchar" MaxLength="50" />
+    <Property Name="stuPhone" Type="nvarchar" MaxLength="10" />
     <Property Name="stuEmail" Type="nvarchar" MaxLength="50" />
     <Property Name="depId" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <EntityContainer Name="StuManagementModelStoreContainer">
     <EntitySet Name="Course" EntityType="Self.Course" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Department" EntityType="Self.Department" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Exam" EntityType="Self.Exam" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
   </EntityContainer>
